@@ -1,0 +1,6 @@
+1,Đắc Nhân Tâm,Dale Carnegie,English,1,12022001,12345
+2,Nhà giả kim Paulo,Coelho,English,1,12022001,12346
+3,Đời thay đổi khi chúng ta thay đổi,Andrew Matthews,English,1,12022001,12347
+4,Dạy Con Làm Giàu Robert,Kiyosaki,English,1,12022001,12348
+5,Nhà Lãnh Đạo không Chức Danh,Thiên Kim,English,1,12022001,12349
+6,Cho tôi xin 1 vé đi tuổi thơ,Nguyễn Nhật ÁNh,English,1,12022001,12340
