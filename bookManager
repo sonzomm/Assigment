@@ -1,0 +1,118 @@
+package Assignment.contronlers;
+
+import Assignment.models.Book;
+import Assignment.services.BookDataServices;
+
+import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
+import java.util.Scanner;
+
+public class BookManager {
+    private List<Book> list;
+    private final String pathFileToInput;
+    private BookDataServices service;
+    public BookManager(String pathFileToInput) {
+        this.pathFileToInput = pathFileToInput;
+        this.service = new BookDataServices();
+        try {
+            this.list = service.read(pathFileToInput);
+
+        }catch (IOException e ){}
+    }
+
+    public void sortByName(){
+        Collections.sort(list,(s1,s2)->s1.getName().compareTo(s2.getName()));
+    }
+    public void sortById(){
+        Collections.sort(list,(s1,s2)->Integer.compare(s1.getId(), s2.getId()));
+    }
+    public void sortByAuthor(List<Book> list) {
+        Collections.sort(list, (s1, s2) -> s1.getAuthor().compareTo(s2.getAuthor()));
+    }
+    public void sortByLanguage(List<Book> list) {
+        Collections.sort(list, (s1, s2) -> s1.getLanguage().compareTo(s2.getLanguage()));
+    }
+    public void sortByPrice(List<Book> list) {
+        Collections.sort(list, (s1, s2) -> Double.compare(s1.getPrice(), s2.getPrice()));
+    }
+    public void sortByPublishData(List<Book> list) {
+        Collections.sort(list, (s1, s2) -> s1.getPublisDdate().compareTo(s2.getPublisDdate()));
+    }
+    public void sortByISBN(List<Book> list) {
+        Collections.sort(list, (s1, s2) -> Integer.compare(s1.getISBN(), s2.getISBN()));
+    }
+
+    public Book findByName(List<Book> list,String name){
+        for(Book s: list){
+            if (s.getName().equals(name)){
+                return s;
+            }
+        }
+        return null;
+    }
+    public Book findById(List<Book> list,int id){
+        for(Book s: list){
+            if (s.getId()==id){
+                return s;
+            }
+        }
+        return null;
+    }
+    public void showAll(){
+        for (Book s: list){
+            System.out.println(s.toString());
+        }
+
+    }
+    public void delete(int id){
+        Book findById = findById(list,id);
+        list.remove(findById);
+    }
+    public void editName(int id){
+        Book book = findById(list,id);
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter name:");
+        String newName = scanner.nextLine();
+        book.setName(newName);
+    }
+    public void editAuthor(List<Book> list,int id){
+        Book book = findById(list,id);
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter author:");
+        String newAuthor = scanner.nextLine();
+        book.setAuthor(newAuthor);
+    }
+    public void editLanguage(List<Book> list,int id){
+        Book book = findById(list,id);
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter language:");
+        String newLanguage = scanner.nextLine();
+        book.setLanguage(newLanguage);
+    }
+    public void editPrice(List<Book> list,int id){
+        Book book = findById(list,id);
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter price:");
+        Double newPrice = Double.valueOf(scanner.nextLine());
+        book.setPrice(newPrice);
+    }
+    public void editPublishDate(List<Book> list,int id){
+        Book book = findById(list,id);
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter publishDate:");
+        String newPublishDate = scanner.nextLine();
+        book.setPublishDate(newPublishDate);
+    }
+    public void editISBN(List<Book> list,int id){
+        Book book = findById(list,id);
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter ISBN:");
+        Integer newISBN = Integer.valueOf(scanner.nextLine());
+        book.setISBN(newISBN);
+    }
+    public void addBook(Scanner sc){
+        list.add(new Book().input(sc));
+    }
+
+}
