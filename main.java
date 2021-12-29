@@ -16,7 +16,8 @@ public class Main {
         String choose = null;
         boolean exit = false;
         BookManager bookManager = new BookManager("src/main/resources/book-input.txt");
-
+        BookDataServices service = new BookDataServices();
+        List<Book> books = service.read("src/main/resources/book-input.txt");
         showMenu();
         while (true) {
 
@@ -26,6 +27,7 @@ public class Main {
                 case "1":
                     System.out.println("Add book");
                     bookManager.addBook(scanner);
+                    System.out.println("Add book successfully");
                     break;
                 case "2":
                     System.out.println("Edit book");
@@ -33,6 +35,10 @@ public class Main {
                     int bookId = scanner.nextInt();
                     scanner.nextLine();
                     bookManager.editName(bookId);
+                    bookManager.editAuthor(bookId);
+                    bookManager.editLanguage(bookId);
+                    bookManager.editPrice(bookId);
+                    System.out.println("Edit book successfully");
                     break;
                 case "3":
                     System.out.println("Delete book");
@@ -40,16 +46,54 @@ public class Main {
                     bookId = scanner.nextInt();
                     scanner.nextLine();
                     bookManager.delete(bookId);
+                    System.out.println("Delete book successfully");
                     break;
                 case "4":
                     System.out.println("Sort By Id");
                     bookManager.sortById();
+                    bookManager.showAll();
                     break;
                 case "5":
                     System.out.println("Sort By Name");
                     bookManager.sortByName();
+                    bookManager.showAll();
                     break;
                 case "6":
+                    System.out.println("Sort By Author");
+                    bookManager.sortByAuthor();
+                    bookManager.showAll();
+                    break;
+                case "7":
+                    System.out.println("Sort By language");
+                    bookManager.sortByLanguage();
+                    bookManager.showAll();
+                    break;
+                case "8":
+                    System.out.println("Sort By price");
+                    bookManager.sortByPrice();
+                    bookManager.showAll();
+                    break;
+                case"9":
+                    System.out.println("Find by Name");
+                    System.out.println("Enter Name:");
+                    String nameToFind = scanner.nextLine();
+                    System.out.println("The book you need is:");
+                    System.out.println(bookManager.findByName(nameToFind));                                           break;
+                case"10":
+                    System.out.println("Find by Author");
+                    System.out.println("Enter Author:");
+                    String authorToFind = scanner.nextLine();
+                    System.out.println("The book you need is:");
+                    System.out.println(bookManager.findByAuthor(authorToFind));
+                    break;
+                case"11":
+                    System.out.println("Find by publishDate");
+                    System.out.println("Enter Category:");
+                    String categoryToFind = scanner.nextLine();
+                    System.out.println("The book you need is:");
+                    System.out.println(bookManager.findByPublishDate(categoryToFind));
+                    break;
+                case "12":
                     System.out.println("show all book");
                     bookManager.showAll();
                     break;
@@ -78,8 +122,14 @@ public class Main {
         System.out.println("3.Delete book");
         System.out.println("4.sort book by id");
         System.out.println("5.sort book by name");
-        System.out.println("6.show all book");
-        System.out.println("7.Exit");
+        System.out.println("6.sort book by author");
+        System.out.println("7.sort book by language");
+        System.out.println("8.sort book by price");
+        System.out.println("9.Find by Name");
+        System.out.println("10.Find by Author");
+        System.out.println("11.Find by Find by publishDate");
+        System.out.println("12.show all book");
+        System.out.println("0.Exit");
         System.out.println("------------------------------");
 
 
