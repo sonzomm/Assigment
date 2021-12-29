@@ -90,7 +90,7 @@ public class Book {
         this.price = price;
     }
 
-    public String getPublisDdate() {
+    public String getPublishDdate() {
         return publishDate;
     }
 
